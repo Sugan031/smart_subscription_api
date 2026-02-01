@@ -275,43 +275,40 @@ Users table created via laravel default users table via migration
 plans
 
 Defines available subscription plans.
-
-Column	        Type	    Description
-id	            bigint	    Primary key
-name	        string	    Plan name
-price	        decimal	    Monthly price
-monthly_limit	integer	    Usage limit per month
-is_unlimited	boolean	    Unlimited usage flag
-timestamps	                Created & updated times
+---
+id (PK, bigint)
+name (string)
+price (decimal)
+monthly_limit (integer, nullable)
+is_unlimited (boolean)
+timestamps
 
 
 subscriptions
 
 Represents a user's subscription.
-
-Column	            Type	    Description
-id	                bigint	    Primary key
-user_id	            bigint	    Reference to users.id
-plan_id	            bigint	    Current active plan
-next_plan_id	    bigint	    Scheduled downgrade plan
-start_date	        date	    Subscription start date
-current_cycle_start	date	    Billing cycle start
-current_cycle_end	date	    Billing cycle end
-status	            enum	    active / inactive
-timestamps	                    Created & updated times
+---
+id (PK, bigint)
+user_id (FK → users.id, bigint)
+plan_id (FK → plans.id, bigint)
+next_plan_id (FK → plans.id, bigint, nullable)
+start_date (date)
+current_cycle_start (date)
+current_cycle_end (date)
+status (enum: active | inactive)
+timestamps
 
 usage_counters
 
 Tracks usage per billing cycle.
-
-Column	        Type	    Description
-id	            bigint	    Primary key
-user_id	        bigint	    Reference to users.id
-subscription_id	bigint	    Reference to subscriptions.id
-used_units	    integer	    Units consumed
-cycle_start	    date	    Billing cycle start
-cycle_end	    date	    Billing cycle end
-timestamps	                Created & updated times
+---
+id (PK, bigint)
+user_id (FK → users.id, bigint)
+subscription_id (FK → subscriptions.id, bigint)
+used_units (integer)
+cycle_start (date)
+cycle_end (date)
+timestamps
 
 Schema Relationships
 
