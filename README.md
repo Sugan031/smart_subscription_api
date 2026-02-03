@@ -76,7 +76,7 @@ This project demonstrates **production-level Laravel knowledge**, including test
 ### Backend
 
 * **Laravel 10** (PHP 8.1+)
-* **JWT Authentication** (`tymon/jwt-auth`)
+* **JWT Authentication** (php-open-source-saver/jwt-auth)
 * **MySQL** (production & testing)
 
 ### Testing
@@ -190,6 +190,7 @@ Configure database credentials in `.env`.
 Generate keys:
 
 ```bash
+php artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider
 php artisan key:generate
 php artisan jwt:secret
 ```
